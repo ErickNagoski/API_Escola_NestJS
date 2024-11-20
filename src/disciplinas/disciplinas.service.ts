@@ -1,11 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDisciplinaDto } from './dto/create-disciplina.dto';
 import { UpdateDisciplinaDto } from './dto/update-disciplina.dto';
+import { DatabaseService } from 'src/databaseService/database.service';
 
 @Injectable()
 export class DisciplinasService {
-  create(createDisciplinaDto: CreateDisciplinaDto) {
-    return 'This action adds a new disciplina';
+  constructor(private readonly databaseService: DatabaseService) {}
+
+  async create(createDisciplinaDto: CreateDisciplinaDto) {
+
+    await this.databaseService.query('SELECT * FROM users');
+
+    return { status: 'ok' };
   }
 
   findAll() {
