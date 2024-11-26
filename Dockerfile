@@ -2,16 +2,15 @@
 FROM node:18
 
 # Diretório de trabalho
-WORKDIR /app
+WORKDIR /usr/src/api
 
 # Copiar os arquivos package.json e package-lock.json
-COPY package*.json ./
-
-# Instalar as dependências
-RUN npm install
-
-# Copiar o restante do código da API
 COPY . .
+COPY ./.env.production ./.env
+# Instalar as dependências
+RUN npm install --quiet --no-optional --no-fund --loglevel=error
+
+RUN npm run build
 
 # Expor a porta usada pela API
 EXPOSE 3000
