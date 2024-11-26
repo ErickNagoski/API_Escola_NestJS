@@ -9,6 +9,7 @@ export class AlunosController {
 
   @Post()
   create(@Body() createAlunoDto: CreateAlunoDto) {
+    console.log('chamou')
     return this.alunosService.create(createAlunoDto);
   }
 
@@ -19,16 +20,6 @@ export class AlunosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.alunosService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAlunoDto: UpdateAlunoDto) {
-    return this.alunosService.update(+id, updateAlunoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.alunosService.remove(+id);
+    return this.alunosService.findOne(id);
   }
 }
