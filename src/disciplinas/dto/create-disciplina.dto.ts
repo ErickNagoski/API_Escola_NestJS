@@ -1,1 +1,4 @@
-export class CreateDisciplinaDto {}
+export class CreateDisciplinaDto {
+    name: string;
+    teacher: number;
+}

@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { AlunosService } from './alunos.service';
 import { CreateAlunoDto } from './dto/create-aluno.dto';
-import { UpdateAlunoDto } from './dto/update-aluno.dto';
-
+import { AuthGuard } from '@nestjs/passport';
+@UseGuards(AuthGuard('jwt'))
 @Controller('alunos')
 export class AlunosController {
-  constructor(private readonly alunosService: AlunosService) {}
+  constructor(private readonly alunosService: AlunosService) { }
 
   @Post()
   create(@Body() createAlunoDto: CreateAlunoDto) {
